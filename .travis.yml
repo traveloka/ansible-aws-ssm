@@ -18,4 +18,4 @@ script:
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvv
   - sleep 5
-  - inspec exec tests/test_spec.yml
+  - inspec exec tests/test_spec.rb
