@@ -17,5 +17,5 @@ script:
   - sudo lsb_release -a
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvv
-  - sleep 5
+  - sleep 15
   - inspec exec tests/test_spec.rb
