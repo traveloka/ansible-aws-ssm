@@ -1,0 +1,5 @@
+---
+# defaults file for aws-ssm-agent
+
+aws_region: ap-southeast-1
+aws_ssm_agent_url: https://amazon-ssm-{{ aws_region }}.s3.amazonaws.com/latest/debian_amd64/amazon-ssm-agent.deb

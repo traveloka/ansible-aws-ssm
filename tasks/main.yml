@@ -1,0 +1,21 @@
+---
+# tasks file for aws-ssm-agent
+
+- block:
+    - name: install aws ssm-agent
+      apt:
+        deb: "{{ aws_ssm_agent_url }}"
+        state: present
+        update_cache: yes
+        cache_valid_time: "{{ apt_cache_valid_time | default(omit) }}"
+
+    - name: ensure ssm-agent service running and enabled on boot
+      service:
+        name: "{{ aws_ssm_agent_service_name }}"
+        enabled: yes
+        state: started
+
+  become: yes
+  become_method: sudo
+  tags:
+    - aws-ssm-agent

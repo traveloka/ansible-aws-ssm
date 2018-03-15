@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  description: Installs aws-ssm-agent
+  company: Traveloka
+  min_ansible_version: 2.1
+  platforms:
+  - name: Ubuntu
+    versions:
+    - precise
+    - trusty
+  categories:
+  - cloud
+  - cloud:ec2
+dependencies: []
