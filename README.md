@@ -1,4 +1,4 @@
-# shared/aws-ssm-agent #
+# aws-ssm-agent #
 
 Installs aws-ssm-agent.
 
@@ -33,4 +33,4 @@ None
 
     - hosts: servers
       roles:
-        - role: shared/aws-ssm-agent
+        - role: aws-ssm-agent
