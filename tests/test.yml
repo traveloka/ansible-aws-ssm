@@ -3,5 +3,5 @@
   vars:
     apt_cache_valid_time: 3600
   roles:
-    - role: ../../ansible-amazon-ssm-agent
+    - role: ../../ansible-aws-ssm
 
