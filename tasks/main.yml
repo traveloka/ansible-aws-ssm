@@ -2,19 +2,34 @@
 # tasks file for aws-ssm-agent
 
 - block:
-    - name: install aws ssm-agent
-      apt:
-        deb: "{{ aws_ssm_agent_url }}"
-        state: present
-        update_cache: yes
-        cache_valid_time: "{{ apt_cache_valid_time | default(omit) }}"
 
-    - name: ensure ssm-agent service running and enabled on boot
-      service:
-        name: "{{ aws_ssm_agent_service_name }}"
-        enabled: yes
-        state: started
+    - block: # install only when Ubuntu version > 16.04
 
+        - name: install aws ssm-agent with deb package
+          apt:
+            deb: "{{ aws_ssm_agent_url }}"
+            state: present
+            update_cache: yes
+            cache_valid_time: "{{ apt_cache_valid_time | default(omit) }}"
+
+        - name: ensure ssm-agent service running and enabled on boot
+          service:
+            name: "{{ aws_ssm_agent_service_name }}"
+            enabled: yes
+            state: started
+      
+      when: ansible_distribution_version is version_compare('16.04', '<')
+
+    - block: # install only when Ubuntu version >= 16.04
+
+        - name: install aws ssm-agent with snap
+          snap:
+            name: "amazon-ssm-agent"
+            classic: "yes"
+            state: "present"
+
+      when: ansible_distribution_version is version_compare('16.04', '>=')
+      
   become: yes
   become_method: sudo
   tags:

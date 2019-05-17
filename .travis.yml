@@ -3,19 +3,21 @@
 language: python
 python: "2.7"
 sudo: "required"
-dist: "trusty"
+dist: "xenial"
 
 before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -qq python-apt
+  - wget https://packages.chef.io/files/stable/inspec/4.3.2/ubuntu/18.04/inspec_4.3.2-1_amd64.deb
 
 install:
-  - pip install ansible==2.4
-  - gem install inspec
+  - pip install ansible==2.8
+  - dpkg -i inspec_4.3.2-1_amd64.deb
 
 script:
   - sudo lsb_release -a
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo -vvv
-  - sleep 15
+  - ansible --version
+  - inspec --version
+  - ansible-playbook -i test/inventory test/test.yml --syntax-check
+  - ansible-playbook -i test/inventory test/test.yml --connection=local -vvv
   - inspec exec test/integration/default/test_spec.rb
