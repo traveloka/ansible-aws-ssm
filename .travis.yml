@@ -20,4 +20,5 @@ script:
   - inspec --version
   - ansible-playbook -i test/inventory test/test.yml --syntax-check
   - ansible-playbook -i test/inventory test/test.yml --connection=local -vvv
-  - inspec exec test/integration/default/test_spec.rb
+  - inspec exec test/integration/default/test_spec.rb --chef-license=accept-silent --log-level=debug
+  
