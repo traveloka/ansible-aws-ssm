@@ -22,11 +22,14 @@
 
     - block: # install only when Ubuntu version >= 16.04
 
-        - name: install aws ssm-agent with snap
+        - name: install amazon-ssm-agent with snap
           snap:
             name: "amazon-ssm-agent"
             classic: "yes"
             state: "present"
+
+        - name: ensure amazon-ssm-agent is started and enabled on boot
+          command: "snap start --enable amazon-ssm-agent"
 
       when: ansible_distribution_version is version_compare('16.04', '>=')
       
