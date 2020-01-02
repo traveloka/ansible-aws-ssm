@@ -2,6 +2,11 @@
 
 Installs aws-ssm-agent.
 
+Only works on Ubuntu machine.
+If OS is Ubuntu 14 or lower, then this role will install SSM agent using apt and debian package downloaded (during run time) from AWS.
+If OS is Ubuntu 16 or greater, then this role will be using Snap to install the agent.
+
+
 ## Requirements ##
 
 No special pre-requisites.

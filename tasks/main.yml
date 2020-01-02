@@ -2,7 +2,7 @@
 # tasks file for aws-ssm-agent
 
 - block:
-    - block: # install only when Ubuntu version > 16.04
+    - block: # install only when Ubuntu version < 16.04
         - name: install aws ssm-agent with deb package
           apt:
             deb: "{{ aws_ssm_agent_url }}"
