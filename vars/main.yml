@@ -1,3 +1,4 @@
 ---
 
 aws_ssm_agent_service_name: amazon-ssm-agent
+aws_ssm_agent_systemd_name: snap.amazon-ssm-agent.amazon-ssm-agent.service
