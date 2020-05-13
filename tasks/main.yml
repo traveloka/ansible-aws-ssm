@@ -27,7 +27,10 @@
             channel: "candidate"
 
         - name: ensure amazon-ssm-agent is started and enabled on boot
-          command: "snap start --enable amazon-ssm-agent"
+          systemd:
+            name: "{{ aws_ssm_agent_systemd_name }}"
+            enabled: yes
+            state: started
 
       when: ansible_distribution_version is version_compare('16.04', '>=')
 
